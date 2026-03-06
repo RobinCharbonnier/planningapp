@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/bottomnav.tsx","./src/components/jazzlogo.tsx","./src/components/shiftcard.tsx","./src/data/mockdata.ts","./src/pages/accueil.tsx","./src/pages/compte.tsx","./src/pages/demandes.tsx","./src/pages/planning.tsx"],"version":"5.9.3"}
