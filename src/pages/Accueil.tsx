@@ -29,9 +29,11 @@ export default function Accueil({ onNavigate }: AccueilProps) {
   return (
     <div className="min-h-screen bg-jazz-cream pb-24 scrollable overflow-y-auto">
       {/* Header */}
-      <div className="bg-white px-5 pt-12 pb-5 shadow-sm">
+      <div className="bg-white px-5 pt-10 pb-5 shadow-sm">
+        <div className="flex flex-col items-center mb-4">
+          <JazzLogo size={90} />
+        </div>
         <div className="flex items-center gap-3">
-          <JazzLogo size={40} />
           <div>
             <h1 className="text-xl font-bold text-slate-800">Bonjour {currentUser.firstName} !</h1>
             <p className="text-xs text-slate-400 font-medium">38Riv Jazz Club</p>
@@ -183,39 +185,53 @@ export default function Accueil({ onNavigate }: AccueilProps) {
           </div>
         </section>
 
-        {/* Programme de la semaine */}
+        {/* Programme des concerts */}
         <section>
-          <h2 className="text-base font-bold text-slate-800 mb-3">Programme de la semaine</h2>
-          <div className="space-y-2">
+          <h2 className="text-base font-bold text-slate-800 mb-1">Programme de la semaine</h2>
+          <p className="text-xs text-slate-400 mb-3">Concerts & evenements — source : 38riv.com</p>
+
+          {/* S10 - semaine courante */}
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Cette semaine — S10</p>
+          <div className="space-y-2 mb-4">
             {[
-              { date: 'Lun 2', event: 'Soiree Blues Session', icon: '🎵' },
-              { date: 'Mar 3', event: 'Ferme', icon: '🔒' },
-              { date: 'Mer 4', event: 'Jam Session Ouverte', icon: '🎸' },
-              { date: 'Jeu 5', event: 'Concert Trio Diaz', icon: '🎷' },
-              { date: 'Ven 6', event: 'Grande Nuit Jazz - Robin Quartet', icon: '⭐' },
-              { date: 'Sam 7', event: 'Soiree Manouche', icon: '🎻' },
-              { date: 'Dim 8', event: 'Ferme', icon: '🔒' },
+              { date: 'Ven 6', event: 'Grande Nuit Jazz - Robin Quartet', icon: '⭐', today: true },
+              { date: 'Sam 7', event: 'Soiree Manouche', icon: '🎻', today: false },
+              { date: 'Dim 8', event: 'Knobillucci — Cool Jazz for quiet dreams', icon: '🎷', today: false },
             ].map((prog, i) => (
               <div
                 key={i}
                 className={`flex items-center gap-3 p-3 rounded-xl ${
-                  prog.date === 'Ven 6'
-                    ? 'bg-amber-50 border border-amber-200'
-                    : prog.event === 'Ferme'
-                    ? 'bg-gray-50'
-                    : 'bg-white border border-gray-100'
+                  prog.today ? 'bg-amber-50 border border-amber-200' : 'bg-white border border-gray-100'
                 }`}
               >
                 <span className="text-base w-6 text-center">{prog.icon}</span>
-                <span className={`text-xs font-semibold w-12 ${prog.date === 'Ven 6' ? 'text-amber-600' : 'text-slate-400'}`}>
+                <span className={`text-xs font-semibold w-12 flex-shrink-0 ${prog.today ? 'text-amber-600' : 'text-slate-400'}`}>
                   {prog.date}
                 </span>
-                <span className={`text-sm font-medium ${prog.event === 'Ferme' ? 'text-slate-400' : 'text-slate-700'}`}>
-                  {prog.event}
-                </span>
-                {prog.date === 'Ven 6' && (
-                  <span className="ml-auto text-xs bg-amber-600 text-white px-2 py-0.5 rounded-full">Aujourd'hui</span>
+                <span className="text-sm font-medium text-slate-700 flex-1">{prog.event}</span>
+                {prog.today && (
+                  <span className="ml-auto text-xs bg-amber-600 text-white px-2 py-0.5 rounded-full flex-shrink-0">Aujourd'hui</span>
                 )}
+              </div>
+            ))}
+          </div>
+
+          {/* S11 - semaine suivante */}
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Semaine prochaine — S11</p>
+          <div className="space-y-2">
+            {[
+              { date: 'Lun 9',  event: 'Tony Paeleman — Wise Animals', icon: '🎹' },
+              { date: 'Mar 10', event: 'Biguine Extension + Jam Session Funk Pierre Gibbe', icon: '🎷' },
+              { date: 'Mer 11', event: 'PEAKS invite Olivier Laisney + Jam Session Jazz Ananda Brandão', icon: '🎸' },
+              { date: 'Jeu 12', event: 'Carte blanche Tony Tixier — The Poetry Syndicate + Jam Session Jazz Solène Cairoli', icon: '🎵' },
+              { date: 'Ven 13', event: 'Coccolite (session acoustique) + Apollo late sessions', icon: '🎶' },
+              { date: 'Sam 14', event: 'Mathilde Gardien & chanson française + Yutaka Shiina & Pierrick Pédron Quartet + Zoot late sessions', icon: '🎻' },
+              { date: 'Dim 15', event: 'Django afternoon — Alba Obert, Ghali Hadefi, Aurélien Robert + Robin Mansanti & Solène Cairoli', icon: '🎷' },
+            ].map((prog, i) => (
+              <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-white border border-gray-100">
+                <span className="text-base w-6 text-center mt-0.5">{prog.icon}</span>
+                <span className="text-xs font-semibold w-12 flex-shrink-0 text-slate-400 mt-0.5">{prog.date}</span>
+                <span className="text-sm font-medium text-slate-700 flex-1 leading-snug">{prog.event}</span>
               </div>
             ))}
           </div>
