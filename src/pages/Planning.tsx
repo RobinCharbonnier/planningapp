@@ -1,17 +1,21 @@
 import { useState, useRef } from 'react'
 import ShiftCard from '../components/ShiftCard'
 import {
-  currentUser,
   employees,
   getShiftsForDate,
   getShiftsForEmployee,
   WEEK_DATES,
   DAY_LABELS_SHORT,
 } from '../data/mockData'
+import type { Employee } from '../data/mockData'
 
 const TODAY = '2026-03-06'
 
 type PlanningView = 'mes-shifts' | 'equipe'
+
+interface PlanningProps {
+  currentUser: Employee
+}
 
 function getDayLabel(dateStr: string): { short: string; num: number } {
   const d = new Date(dateStr + 'T12:00:00')
@@ -19,7 +23,7 @@ function getDayLabel(dateStr: string): { short: string; num: number } {
   return { short: DAY_LABELS_SHORT[dayIndex], num: d.getDate() }
 }
 
-export default function Planning() {
+export default function Planning({ currentUser }: PlanningProps) {
   const [view, setView] = useState<PlanningView>('equipe')
   const [selectedDate, setSelectedDate] = useState(TODAY)
   const [showCalendar, setShowCalendar] = useState(false)

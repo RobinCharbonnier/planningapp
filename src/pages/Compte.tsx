@@ -1,9 +1,14 @@
 import { useState } from 'react'
-import { currentUser } from '../data/mockData'
+import type { Employee } from '../data/mockData'
+
+interface CompteProps {
+  currentUser: Employee
+  onLogout: () => void
+}
 
 type CompteSection = 'profil' | 'rh' | 'documents' | 'password' | null
 
-export default function Compte() {
+export default function Compte({ currentUser, onLogout }: CompteProps) {
   const [activeSection, setActiveSection] = useState<CompteSection>(null)
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
 
@@ -288,7 +293,7 @@ export default function Compte() {
                 >
                   Annuler
                 </button>
-                <button className="flex-1 py-2.5 rounded-xl bg-red-500 text-sm font-semibold text-white">
+                <button onClick={onLogout} className="flex-1 py-2.5 rounded-xl bg-red-500 text-sm font-semibold text-white">
                   Deconnecter
                 </button>
               </div>

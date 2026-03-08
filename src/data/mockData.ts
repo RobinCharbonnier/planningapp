@@ -147,7 +147,37 @@ export const employees: Employee[] = [
   },
 ]
 
-export const currentUser = employees[0] // Robin
+export const currentUser = employees[0] // Robin (default fallback)
+
+export interface UserAccount {
+  email: string
+  password: string
+  employeeId: string
+  isAdmin: boolean
+}
+
+export const userAccounts: UserAccount[] = [
+  { email: 'admin@38riv.fr',            password: 'jazz2026', employeeId: 'e1',  isAdmin: true  },
+  { email: 'marie.leblanc@38riv.fr',    password: 'jazz2026', employeeId: 'e2',  isAdmin: false },
+  { email: 'thomas.dupont@38riv.fr',    password: 'jazz2026', employeeId: 'e3',  isAdmin: false },
+  { email: 'julien.martel@38riv.fr',    password: 'jazz2026', employeeId: 'e4',  isAdmin: false },
+  { email: 'sophie.martin@38riv.fr',    password: 'jazz2026', employeeId: 'e5',  isAdmin: false },
+  { email: 'lucas.bernard@38riv.fr',    password: 'jazz2026', employeeId: 'e6',  isAdmin: false },
+  { email: 'camille.rousseau@38riv.fr', password: 'jazz2026', employeeId: 'e7',  isAdmin: false },
+  { email: 'antoine.moreau@38riv.fr',   password: 'jazz2026', employeeId: 'e8',  isAdmin: false },
+  { email: 'lea.fontaine@38riv.fr',     password: 'jazz2026', employeeId: 'e9',  isAdmin: false },
+  { email: 'hugo.petit@38riv.fr',       password: 'jazz2026', employeeId: 'e10', isAdmin: false },
+]
+
+export function loginUser(email: string, password: string): { employee: Employee; isAdmin: boolean } | null {
+  const account = userAccounts.find(
+    (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
+  )
+  if (!account) return null
+  const employee = employees.find((e) => e.id === account.employeeId)
+  if (!employee) return null
+  return { employee, isAdmin: account.isAdmin }
+}
 
 // Semaine S10: 2 mars – 8 mars 2026
 export const shifts: Shift[] = [

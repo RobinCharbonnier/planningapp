@@ -2,13 +2,13 @@ import { useState } from 'react'
 import JazzLogo from '../components/JazzLogo'
 import ShiftCard from '../components/ShiftCard'
 import {
-  currentUser,
   notifications,
   leaveBalances,
   getShiftsForEmployee,
   getTotalHoursForWeek,
   formatDate,
 } from '../data/mockData'
+import type { Employee } from '../data/mockData'
 import type { Page } from '../App'
 
 const TODAY = '2026-03-06'
@@ -17,9 +17,10 @@ const WEEK_RANGE = 'du 2 au 8 mars 2026'
 
 interface AccueilProps {
   onNavigate: (page: Page) => void
+  currentUser: Employee
 }
 
-export default function Accueil({ onNavigate }: AccueilProps) {
+export default function Accueil({ onNavigate, currentUser }: AccueilProps) {
   const [showAllNotifs, setShowAllNotifs] = useState(false)
 
   const todayShifts = getShiftsForEmployee(currentUser.id, TODAY)
