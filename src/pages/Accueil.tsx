@@ -195,9 +195,9 @@ export default function Accueil({ onNavigate, currentUser }: AccueilProps) {
           <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Cette semaine — S10</p>
           <div className="space-y-2 mb-4">
             {[
-              { date: 'Ven 6', event: 'Grande Nuit Jazz - Robin Quartet', icon: '⭐', today: true },
-              { date: 'Sam 7', event: 'Soiree Manouche', icon: '🎻', today: false },
-              { date: 'Dim 8', event: 'Knobillucci — Cool Jazz for quiet dreams', icon: '🎷', today: false },
+              { date: 'Ven 6', event: 'Grande Nuit Jazz - Robin Quartet', today: true },
+              { date: 'Sam 7', event: 'Soiree Manouche', today: false },
+              { date: 'Dim 8', event: 'Knobillucci — Cool Jazz for quiet dreams', today: false },
             ].map((prog, i) => (
               <div
                 key={i}
@@ -205,8 +205,7 @@ export default function Accueil({ onNavigate, currentUser }: AccueilProps) {
                   prog.today ? 'bg-amber-50 border border-amber-200' : 'bg-white border border-gray-100'
                 }`}
               >
-                <span className="text-base w-6 text-center">{prog.icon}</span>
-                <span className={`text-xs font-semibold w-12 flex-shrink-0 ${prog.today ? 'text-amber-600' : 'text-slate-400'}`}>
+                <span className={`text-xs font-semibold w-14 flex-shrink-0 ${prog.today ? 'text-amber-600' : 'text-slate-400'}`}>
                   {prog.date}
                 </span>
                 <span className="text-sm font-medium text-slate-700 flex-1">{prog.event}</span>
@@ -221,17 +220,16 @@ export default function Accueil({ onNavigate, currentUser }: AccueilProps) {
           <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Semaine prochaine — S11</p>
           <div className="space-y-2">
             {[
-              { date: 'Lun 9',  event: 'Tony Paeleman — Wise Animals', icon: '🎹' },
-              { date: 'Mar 10', event: 'Biguine Extension + Jam Session Funk Pierre Gibbe', icon: '🎷' },
-              { date: 'Mer 11', event: 'PEAKS invite Olivier Laisney + Jam Session Jazz Ananda Brandão', icon: '🎸' },
-              { date: 'Jeu 12', event: 'Carte blanche Tony Tixier — The Poetry Syndicate + Jam Session Jazz Solène Cairoli', icon: '🎵' },
-              { date: 'Ven 13', event: 'Coccolite (session acoustique) + Apollo late sessions', icon: '🎶' },
-              { date: 'Sam 14', event: 'Mathilde Gardien & chanson française + Yutaka Shiina & Pierrick Pédron Quartet + Zoot late sessions', icon: '🎻' },
-              { date: 'Dim 15', event: 'Django afternoon — Alba Obert, Ghali Hadefi, Aurélien Robert + Robin Mansanti & Solène Cairoli', icon: '🎷' },
+              { date: 'Lun 9',  event: 'Tony Paeleman — Wise Animals' },
+              { date: 'Mar 10', event: 'Biguine Extension + Jam Session Funk Pierre Gibbe' },
+              { date: 'Mer 11', event: 'PEAKS invite Olivier Laisney + Jam Session Jazz Ananda Brandão' },
+              { date: 'Jeu 12', event: 'Carte blanche Tony Tixier — The Poetry Syndicate + Jam Session Jazz Solène Cairoli' },
+              { date: 'Ven 13', event: 'Coccolite (session acoustique) + Apollo late sessions' },
+              { date: 'Sam 14', event: 'Mathilde Gardien & chanson française + Yutaka Shiina & Pierrick Pédron Quartet + Zoot late sessions' },
+              { date: 'Dim 15', event: 'Django afternoon — Alba Obert, Ghali Hadefi, Aurélien Robert + Robin Mansanti & Solène Cairoli' },
             ].map((prog, i) => (
               <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-white border border-gray-100">
-                <span className="text-base w-6 text-center mt-0.5">{prog.icon}</span>
-                <span className="text-xs font-semibold w-12 flex-shrink-0 text-slate-400 mt-0.5">{prog.date}</span>
+                <span className="text-xs font-semibold w-14 flex-shrink-0 text-slate-400 mt-0.5">{prog.date}</span>
                 <span className="text-sm font-medium text-slate-700 flex-1 leading-snug">{prog.event}</span>
               </div>
             ))}
